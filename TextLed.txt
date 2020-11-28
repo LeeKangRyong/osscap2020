@@ -1,0 +1,2 @@
+https://www.youtube.com/watch?v=B-bWb90CV4E
+https://github.com/partofthething/infopanel/blob/master/infopanel/driver.py
