@@ -45,6 +45,14 @@ def refresh_arr(arr):
 		for x in range(16):
 			arr[y][x] = 0
 	return arr
+# 배열의 좌우 바꾸는 함수
+def arr_converse(arr):
+	conv_arr = []
+	for j in range(-1,-17,-1):
+		conv_arr.append(arr[j])
+	return conv_arr
+			
+
 			
 #옷 입힌 상태의 배열 리턴
 ##########함수들 끝
@@ -88,7 +96,7 @@ while True:
 					i = 0
 				else:
 					i = i+1
-					oScreen = Matrix(list_top[i])
+				oScreen = Matrix(list_top[i])
 			elif key == 'a':
 				if i == 0:
 					i = last - 1
@@ -113,7 +121,7 @@ while True:
 			draw_matrix(oScreen)
 			key = input('Enter key')
 			if key == 'd':
-				if i == last -1:
+				if i == last - 1:
 					i = 0
 				else:
 					i = i+1
@@ -164,8 +172,10 @@ while True:
 			else:
 				continue      #신발 선택 끝
 		
-	elif key == 'p': #악세사리 아직 안함
 
+# 1번 키는 악세사리 1 선택하는 거 
+	elif key == '1':
+		chr_miffy.arr_acc1 = refresh_arr(chr_miffy.arr_acc1)
 		i = 0
 		last = len(list_acc)
 		oScreen = Matrix(list_acc[i])
@@ -190,14 +200,91 @@ while True:
 				chr_miffy.wear_arr()
 				oScreen = Matrix(chr_miffy.arr_final)
 				break
+			elif key == 'w':
+				for x in range(32):
+					list_acc[i][x] = arr_converse(list_acc[i][x])
+					oScreen = Matrix(list_acc[i])
 			else:
-				continue      #상의 선택 끝
+				continue      #신발 선택 끝
 		
-	else:
-		continue
+
+	elif key == '2':
+		chr_miffy.arr_acc2 = refresh_arr(chr_miffy.arr_acc2)
+		i = 0
+		last = len(list_acc)
+		oScreen = Matrix(list_acc[i])
+		while True:	
+			draw_matrix(oScreen)
+			key = input('Enter key')
+			if key == 'd':
+				if i == last -1:
+					i = 0
+				else:
+					i = i+1
+				oScreen = Matrix(list_acc[i])
+			elif key == 'a':
+				if i == 0:
+					i = last - 1
+				else:
+					i = i-1
+				oScreen = Matrix(list_acc[i])
+			elif key == 'y': #옷 선택
+				chr_miffy.arr_final = refresh_arr(chr_miffy.arr_final)
+				chr_miffy.set_acc2(list_acc[i])
+				chr_miffy.wear_arr()
+				oScreen = Matrix(chr_miffy.arr_final)
+				break
+
+			else:
+				continue      #신발 선택 끝
+		
+
+	elif key == '3':
+		chr_miffy.arr_acc3 = refresh_arr(chr_miffy.arr_acc3)
+		i = 0
+		last = len(list_acc)
+		oScreen = Matrix(list_acc[i])
+		while True:	
+			draw_matrix(oScreen)
+			key = input('Enter key')
+			if key == 'd':
+				if i == last -1:
+					i = 0
+				else:
+					i = i+1
+				oScreen = Matrix(list_acc[i])
+			elif key == 'a':
+				if i == 0:
+					i = last - 1
+				else:
+					i = i-1
+				oScreen = Matrix(list_acc[i])
+			elif key == 'y': #옷 선택
+				chr_miffy.arr_final = refresh_arr(chr_miffy.arr_final)
+				chr_miffy.set_acc3(list_acc[i])
+				chr_miffy.wear_arr()
+				oScreen = Matrix(chr_miffy.arr_final)
+				break
+
+			else:
+				continue      #신발 선택 끝
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	if(key == 'q'):
 		break
 #시간제어 변수로 종료 제어
 	
-
