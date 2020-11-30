@@ -6,6 +6,8 @@ from bot_all import *
 from character import *
 from naked import *
 from run_class import *
+from acc_all import *
+from shoes_all import *
 
 # LED 사용하기 위해 한번 실행
 def LED_init():
@@ -37,7 +39,12 @@ def draw_matrix(oScreen):
 				LMD.set_pixel(y, x, 7)		
 			else:
 				continue
-			
+#배열 초기화 함수
+def refresh_arr(arr):
+	for y in range(32):
+		for x in range(16):
+			arr[y][x] = 0
+	return arr
 			
 #옷 입힌 상태의 배열 리턴
 ##########함수들 끝
@@ -62,14 +69,17 @@ gameover =0
 while True:
 	draw_matrix(oScreen)
 	key = input('Enter key')
+
 	if key == 'r': #캐릭터 재생성
-		#아마도 arr_final 초기화 시켜야 할듯 나중에 보고 추가
+		arr_final = refresh_arr(arr_final)
 		chr_miffy = Character(arr_final, arr_character, arr_final, arr_final, arr_final, arr_final, arr_final, arr_final)
-		
+		chr_miffy.wear_arr()
+		oScreen = Matrix(chr_miffy.arr_final)
 	elif key == 't':	#상의 선택 			
+		chr_miffy.arr_top = refresh_arr(chr_miffy.arr_top)
 		i = 0
 		last = len(list_top)
-		oScreen = Matrix(list_top[i])
+		oScreen = Matrix(list_top[i])	
 		while True:	
 			draw_matrix(oScreen)
 			key = input('Enter key')
@@ -86,6 +96,7 @@ while True:
 					i = i-1
 				oScreen = Matrix(list_top[i])
 			elif key == 'y': #옷 선택
+				chr_miffy.arr_final = refresh_arr(chr_miffy.arr_final)
 				chr_miffy.set_top(list_top[i])
 				chr_miffy.wear_arr()
 				oScreen = Matrix(chr_miffy.arr_final)
@@ -94,6 +105,7 @@ while True:
 				continue      #상의 선택 끝
 		
 	elif key == 'b':
+		chr_miffy.arr_bottom = refresh_arr(chr_miffy.arr_bottom)
 		i = 0
 		last = len(list_bottom)
 		oScreen = Matrix(list_bottom[i])
@@ -113,14 +125,17 @@ while True:
 					i = i-1
 				oScreen = Matrix(list_bottom[i])
 			elif key == 'y': #옷 선택
+				chr_miffy.arr_final = refresh_arr(chr_miffy.arr_final)
 				chr_miffy.set_bottom(list_bottom[i])
 				chr_miffy.wear_arr()
 				oScreen = Matrix(chr_miffy.arr_final)
+
 				break
 			else:
 				continue      #하의 선택 끝
 		
 	elif key == 's':
+		chr_miffy.arr_shoes = refresh_arr(chr_miffy.arr_shoes)
 		i = 0
 		last = len(list_shoes)
 		oScreen = Matrix(list_shoes[i])
@@ -140,6 +155,7 @@ while True:
 					i = i-1
 				oScreen = Matrix(list_shoes[i])
 			elif key == 'y': #옷 선택
+				chr_miffy.arr_final = refresh_arr(chr_miffy.arr_final)
 				chr_miffy.set_shoes(list_shoes[i])
 				chr_miffy.wear_arr()
 				oScreen = Matrix(chr_miffy.arr_final)
@@ -148,11 +164,11 @@ while True:
 			else:
 				continue      #신발 선택 끝
 		
-	elif key == '1': #악세사리 아직 안함
+	elif key == 'p': #악세사리 아직 안함
 
 		i = 0
-		last = len(list_top)
-		oScreen = Matrix(list_top[i])
+		last = len(list_acc)
+		oScreen = Matrix(list_acc[i])
 		while True:	
 			draw_matrix(oScreen)
 			key = input('Enter key')
@@ -161,15 +177,16 @@ while True:
 					i = 0
 				else:
 					i = i+1
-				oScreen = Matrix(list_top[i])
+				oScreen = Matrix(list_acc[i])
 			elif key == 'a':
 				if i == 0:
 					i = last - 1
 				else:
 					i = i-1
-				oScreen = Matrix(list_top[i])
+				oScreen = Matrix(list_acc[i])
 			elif key == 'y': #옷 선택
-				chr_miffy.set_top(list_top[i])
+				chr_miffy.arr_final = refresh_arr(chr_miffy.arr_final)
+				chr_miffy.set_acc1(list_acc[i])
 				chr_miffy.wear_arr()
 				oScreen = Matrix(chr_miffy.arr_final)
 				break
@@ -179,7 +196,7 @@ while True:
 	else:
 		continue
 
-	if(gameover == 1):
+	if(key == 'q'):
 		break
 #시간제어 변수로 종료 제어
 	
