@@ -49,3 +49,6 @@ class Character:
 	
 	def set_acc2(self, arr_acc2):
 		self.arr_acc2 = arr_acc2
+	
+	def set_acc3(self, arr_acc3):
+		self.arr_acc3 = arr_acc3
