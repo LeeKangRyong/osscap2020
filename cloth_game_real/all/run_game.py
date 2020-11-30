@@ -47,10 +47,9 @@ def refresh_arr(arr):
 	return arr
 # 배열의 좌우 바꾸는 함수
 def arr_converse(arr):
-	conv_arr = [[0 for x in range(16)] for y in range(32)]
-	for i in range(32):
-		for j in range(-1,-17,-1):
-			conv_arr[i][(-j-1)]
+	conv_arr = []
+	for j in range(-1,-17,-1):
+		conv_arr.append(arr[j])
 	return conv_arr
 			
 
@@ -202,8 +201,9 @@ while True:
 				oScreen = Matrix(chr_miffy.arr_final)
 				break
 			elif key == 'w':
-				list_acc[i] = arr_converse(list_acc[i])
-				oScreen = Matrix(list_acc[i])
+				for x in range(32):
+					list_acc[i][x] = arr_converse(list_acc[i][x])
+					oScreen = Matrix(list_acc[i])
 			else:
 				continue      #신발 선택 끝
 		
