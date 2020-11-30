@@ -100,4 +100,4 @@ s3 = [
 
 
 
-shoes = [s1, s2, s3]
+list_shoes = [s1, s2, s3]
