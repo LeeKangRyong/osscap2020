@@ -6,6 +6,6 @@ html =  requests.get('https://search.naver.com/search.naver?sm=tab_hty.top&where
 
 soup = bs(html.text,'html.parser')
 
-temperature = soup.findAll('span',{'class':'todaytemp'})
-print(tempearture[0].text)
+temp = soup.findAll('span',{'class':'todaytemp'})
+print(temp[0].text)
 
