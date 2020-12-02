@@ -10,7 +10,7 @@ from acc_all import *
 from shoes_all import *
 import time
 from copy import *
-
+from recom_all import *
 # LED 사용하기 위해 한번 실행
 def LED_init():
 	thread=threading.Thread(target=LMD.main, args=())
@@ -41,7 +41,7 @@ def draw_matrix(oScreen):
 				LMD.set_pixel(y, x, 7)
 			elif array[y][x] == 9:
 				LMD.set_pixel(y, x, 0)
-			else:
+			else:i
 				continue
 #배열 초기화 함수
 def refresh_arr(arr):
@@ -50,23 +50,42 @@ def refresh_arr(arr):
 			arr[y][x] = 0
 	
 
+#옷 추천 여부 판단
+def recommend(arr_cloth, arr_recom, oScreen, temp):
+    if (temp >= 20):
+        if arr_cloth[31][15] == 10 :
+            oScreen.paste(arr_recom[0], 0, 0)
+        elif arr_cloth[31][15] == 20:
+            oScreen.paste(arr_recom[1], 0, 0)
+    elif (temp < 20):
+        if arr_cloth[31][15] == 10:
+            oScreen.paste(arr_recom[1], 0, 0)
+        elif arr_cloth[31][15] == 20:
+            oScreen.paste(arr_recom[0], 0, 0)
+    return oScreen
+    
+    
+
+
+
+
+
 '''
 # 배열의 좌우 바꾸는 함수
 def arr_converse(print_arr):
-	conv_arr = [[0 for x in range(16)] for y in range(32)]
-	for i in range(32):
-		for j in range(-1,-17,-1):
-			conv_arr[i][(-j-1)] = print_arr[i][j]
-	print_arr = deepcopy(conv_arr)
-	
+    conv_arr = [[0 for x in range(16)] for y in range(32)]
+    for i in range(32):
+	    for j in range(-1,-17,-1):
+		    conv_arr[i][(-j-1)] = print_arr[i][j]
+    print_arr = deepcopy(conv_arr)	
 '''
 			
 def arr_converse(print_arr):
-	conv_arr = deepcopy(print_arr)
-	for i in range(32):
-		for j in range(-1,-17,-1):
-			conv_arr[i][(-j-1)] = print_arr[i][j]
-	print_arr = deepcopy(conv_arr)
+    conv_arr = deepcopy(print_arr)
+    for i in range(32):
+	    for j in range(-1,-17,-1):
+		    conv_arr[i][(-j-1)] = print_arr[i][j]
+    print_arr = deepcopy(conv_arr)
 #옷 입힌 상태의 배열 리턴
 ##########함수들 끝
 
@@ -140,15 +159,22 @@ while True:
 				print_arr = deepcopy(list_top[i])
 				change_arr(print_arr)
 				oScreen = Matrix(print_arr)			
+                                
+                                #추천 기능 
+                                oSreen = recommend(list_top[i], arr_recom, oScreen, 10) 
 				
 			elif key == 'a':
 				if i == 0:
 					i = last - 1
 				else:
-					i = i-1
+					i = i-1 
 				print_arr = deepcopy(list_top[i])
 				change_arr(print_arr)
 				oScreen = Matrix(print_arr)			
+                                
+                                #추천 기능 
+                                oSreen = recommend(list_top[i], arr_recom, oScreen, 10) 
+
 				
 			elif key == 'y': #옷 선택
 				refresh_arr(chr_miffy.arr_final)
