@@ -41,7 +41,7 @@ def draw_matrix(oScreen):
 				LMD.set_pixel(y, x, 7)
 			elif array[y][x] == 9:
 				LMD.set_pixel(y, x, 0)
-			else:i
+			else:
 				continue
 #배열 초기화 함수
 def refresh_arr(arr):
@@ -51,18 +51,22 @@ def refresh_arr(arr):
 	
 
 #옷 추천 여부 판단
-def recommend(arr_cloth, arr_recom, oScreen, temp):
-    if (temp >= 20):
-        if arr_cloth[31][15] == 10 :
-            oScreen.paste(arr_recom[0], 0, 0)
-        elif arr_cloth[31][15] == 20:
-            oScreen.paste(arr_recom[1], 0, 0)
-    elif (temp < 20):
-        if arr_cloth[31][15] == 10:
-            oScreen.paste(arr_recom[1], 0, 0)
-        elif arr_cloth[31][15] == 20:
-            oScreen.paste(arr_recom[0], 0, 0)
-    return oScreen
+def recommend(arr_cloth, arr_recom, print_arr, temp):
+	if (temp >= 20):
+		if arr_cloth[31][15] == 10 :
+			for i in range(9):
+				print_arr[i] = deepcopy(arr_recom[0][i])
+		elif arr_cloth[31][15] == 20:
+			for i in range(9):
+				print_arr[i] = deepcopy(arr_recom[1][i])
+	elif (temp < 20):
+		if arr_cloth[31][15] == 10 :
+			for i in range(9):
+				print_arr[i] = deepcopy(arr_recom[1][i])
+		elif arr_cloth[31][15] == 20:
+			for i in range(9):
+				print_arr[i] = deepcopy(arr_recom[0][i])
+	
     
     
 
@@ -161,7 +165,8 @@ while True:
 				oScreen = Matrix(print_arr)			
                                 
                                 #추천 기능 
-                                oSreen = recommend(list_top[i], arr_recom, oScreen, 10) 
+				recommend(list_top[i], arr_recom, print_arr, 10) 
+				oScreen = Matrix(print_arr)
 				
 			elif key == 'a':
 				if i == 0:
@@ -172,8 +177,9 @@ while True:
 				change_arr(print_arr)
 				oScreen = Matrix(print_arr)			
                                 
-                                #추천 기능 
-                                oSreen = recommend(list_top[i], arr_recom, oScreen, 10) 
+                #추천 기능 
+				recommend(list_top[i], arr_recom, print_arr, 10) 
+				oScreen = Matrix(print_arr)
 
 				
 			elif key == 'y': #옷 선택
