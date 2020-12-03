@@ -19,7 +19,7 @@ import pygame
 
 
 pygame.init()
-minute = int(input("how long"))
+minute = int(input("how long")) #실행 시간 입력
 
 total_time = minute
 start_ticks = pygame.time.get_ticks()
@@ -89,7 +89,7 @@ def recommend(arr_cloth, arr_recom, print_arr, temp):
 
 
 
-def arr_converse(print_arr):
+def arr_converse(print_arr): #위치 바꾸는 함수
     conv_arr = [[0 for x in range(16)] for y in range(32)]
     for i in range(32):
 	    for j in range(-1,-17,-1):
@@ -139,10 +139,10 @@ def change_arr(print_arr):       #출력위치 바꾸는 함수
 				check_arr = 1
 				break
 		if (check_arr == 1):
-			break
+			break                   #출력 위치 중앙으로 바꾸는 함수
 
 
-
+#게임 시작
 while (running == True):
 	elapsed_time = (pygame.time.get_ticks() - start_ticks)/1000    #시간관리시작
 	pygame.time.delay(1000)
@@ -172,7 +172,7 @@ while (running == True):
 		while True:	
 			draw_matrix(oScreen)
 			key = input('Enter key')
-			if key == 'd':
+			if key == 'd': #오른쪽으로 넘기기
 				if i == last -1:
 					i = 0
 				else:
@@ -184,7 +184,7 @@ while (running == True):
 				recommend(list_top[i], arr_recom, print_arr, temp) 
 				oScreen = Matrix(print_arr)
 				
-			elif key == 'a':
+			elif key == 'a': #왼쪽으로 넘기기
 				if i == 0:
 					i = last - 1
 				else:
@@ -197,7 +197,7 @@ while (running == True):
 				oScreen = Matrix(print_arr)
 
 				
-			elif key == 'y': #옷 선택
+			elif key == 'y': #상의 선택
 				refresh_arr(chr_miffy.arr_final)
 				chr_miffy.set_top(deepcopy(list_top[i]))
 				chr_miffy.wear_arr()
@@ -206,7 +206,7 @@ while (running == True):
 			else:
 				continue      #상의 선택 끝
 				
-	elif key == 'b':
+        elif key == 'b':                  #하의 선택
 		refresh_arr(chr_miffy.arr_bottom)
 		i = 0
 		last = len(list_bottom)
@@ -216,7 +216,7 @@ while (running == True):
 		while True:	
 			draw_matrix(oScreen)
 			key = input('Enter key')
-			if key == 'd':
+			if key == 'd': #오른쪽으로 넘기기
 				if i == last - 1:
 					i = 0
 				else:
@@ -226,7 +226,7 @@ while (running == True):
 				change_arr(print_arr)			
 				recommend(list_bottom[i], arr_recom, print_arr, temp) 
 				oScreen = Matrix(print_arr)
-			elif key == 'a':
+			elif key == 'a':  #왼쪽으로 넘기기
 				if i == 0:
 					i = last - 1
 				
@@ -237,7 +237,7 @@ while (running == True):
 						
 				recommend(list_bottom[i], arr_recom, print_arr, temp) 
 				oScreen = Matrix(print_arr)
-			elif key == 'y': #옷 선택
+			elif key == 'y': #하의 선택
 				refresh_arr(chr_miffy.arr_final)
 				chr_miffy.set_bottom(deepcopy(list_bottom[i]))
 				chr_miffy.wear_arr()
@@ -246,7 +246,7 @@ while (running == True):
 			else:
 				continue      #하의 선택 끝
 		
-	elif key == 's':
+	elif key == 's': #신발 선택
 		refresh_arr(chr_miffy.arr_shoes)
 		i = 0
 		last = len(list_shoes)
@@ -256,7 +256,7 @@ while (running == True):
 		while True:	
 			draw_matrix(oScreen)
 			key = input('Enter key')
-			if key == 'd':
+			if key == 'd': #오른쪽으로 넘기기
 				if i == last -1:
 					i = 0
 				else:
@@ -264,7 +264,7 @@ while (running == True):
 				print_arr = deepcopy(list_shoes[i])
 				change_arr(print_arr)
 				oScreen = Matrix(print_arr)			
-			elif key == 'a':
+			elif key == 'a': #왼쪽으로 넘기기
 				if i == 0:
 					i = last - 1
 				else:
@@ -272,7 +272,7 @@ while (running == True):
 				print_arr = deepcopy(list_shoes[i])
 				change_arr(print_arr)
 				oScreen = Matrix(print_arr)			
-			elif key == 'y': #옷 선택
+			elif key == 'y': #신발 선택
 				refresh_arr(chr_miffy.arr_final)
 				chr_miffy.set_shoes(deepcopy(list_shoes[i]))
 				chr_miffy.wear_arr()
@@ -283,8 +283,7 @@ while (running == True):
 				continue      #신발 선택 끝
 		
 
-# 1번 키는 악세사리 1 선택하는 거 
-	elif key == '1':
+	elif key == '1': #악세사리1 선택
 		refresh_arr(chr_miffy.arr_acc1)
 		i = 0
 		last = len(list_acc)
@@ -294,7 +293,7 @@ while (running == True):
 		while True:	
 			draw_matrix(oScreen)
 			key = input('Enter key')
-			if key == 'd':
+			if key == 'd': #오른쪽으로 넘기기
 				if i == last -1:
 					i = 0
 				else:
@@ -302,7 +301,7 @@ while (running == True):
 				print_arr = deepcopy(list_acc[i])
 				change_arr(print_arr)
 				oScreen = Matrix(print_arr)			
-			elif key == 'a':
+			elif key == 'a': #왼쪽으로 넘기기
 				if i == 0:
 					i = last - 1
 				else:
@@ -311,20 +310,20 @@ while (running == True):
 				change_arr(print_arr)
 				oScreen = Matrix(print_arr)			
 		
-			elif key == 'y': #옷 선택
+			elif key == 'y': #악세사리1 선택
 				refresh_arr(chr_miffy.arr_final)
 				chr_miffy.set_acc1(deepcopy(list_acc[i]))
 				chr_miffy.wear_arr()
 				oScreen = Matrix(chr_miffy.arr_final)
 				break
-			elif key == 'w':
+			elif key == 'w': #악세사리 위치 바꾸기
 				arr_converse(print_arr)
 				oScreen = Matrix(print_arr)
 			else:
-				continue      #신발 선택 끝
+				continue      #악세사리1 선택 끝
 		
 
-	elif key == '2':
+	elif key == '2':  #악세사리2 선택
 		refresh_arr(chr_miffy.arr_acc2)
 		i = 0
 		last = len(list_acc)
@@ -334,7 +333,7 @@ while (running == True):
 		while True:	
 			draw_matrix(oScreen)
 			key = input('Enter key')
-			if key == 'd':
+			if key == 'd': #오른쪽으로 넘기기
 				if i == last -1:
 					i = 0
 				else:
@@ -344,7 +343,7 @@ while (running == True):
 				oScreen = Matrix(print_arr)			
 
 
-			elif key == 'a':
+			elif key == 'a': #왼쪽으로 넘기기
 				if i == 0:
 					i = last - 1
 				else:
@@ -352,20 +351,20 @@ while (running == True):
 				print_arr = deepcopy(list_acc[i])
 				change_arr(print_arr)
 				oScreen = Matrix(print_arr)			
-			elif key == 'y': #옷 선택
+			elif key == 'y': #악세사리2 선택
 				refresh_arr(chr_miffy.arr_final)
 				chr_miffy.set_acc2(deepcopy(list_acc[i]))
 				chr_miffy.wear_arr()
 				oScreen = Matrix(chr_miffy.arr_final)
 				break
-			elif key == 'w':
+			elif key == 'w': #악세사리 위치 바꾸기
 				arr_converse(print_arr)
 				oScreen = Matrix(print_arr)
 			else:
-				continue      #신발 선택 끝
+				continue      #악세사리2 선택 끝
 		
 
-	elif key == '3':
+	elif key == '3': #악세사리3 선택
 		refresh_arr(chr_miffy.arr_acc3)
 		i = 0
 		last = len(list_acc)
@@ -375,7 +374,7 @@ while (running == True):
 		while True:	
 			draw_matrix(oScreen)
 			key = input('Enter key')
-			if key == 'd':
+			if key == 'd': #오른쪽으로 넘기기
 				if i == last -1:
 					i = 0
 				else:
@@ -383,7 +382,7 @@ while (running == True):
 				print_arr = deepcopy(list_acc[i])
 				change_arr(print_arr)
 				oScreen = Matrix(print_arr)			
-			elif key == 'a':
+			elif key == 'a': #왼쪽으로 넘기기
 				if i == 0:
 					i = last - 1
 				else:
@@ -391,20 +390,20 @@ while (running == True):
 				print_arr = deepcopy(list_acc[i])
 				change_arr(print_arr)
 				oScreen = Matrix(print_arr)			
-			elif key == 'y': #옷 선택
+			elif key == 'y': #악세사리3 선택
 				refresh_arr(chr_miffy.arr_final)
 				chr_miffy.set_acc3(deepcopy(list_acc[i]))
 				chr_miffy.wear_arr()
 				oScreen = Matrix(chr_miffy.arr_final)
 				break
 
-			elif key == 'w':
+			elif key == 'w': #악세사리 위치 바꾸기
 				print_arr = deepcopy(list_acc[i])
 				change_arr(print_arr)
 				arr_converse(print_arr)
 				oScreen = Matrix(print_arr)
 			else:
-				continue      #신발 선택 끝
+				continue      #악세사리3 선택 끝
 		
 
 
