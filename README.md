@@ -33,5 +33,5 @@ rpi-rgb-led-matrix/bindings/python/       이 경로에서 아래 3,4,5번 명�
 
 ###원래는 텍스트 출력과 옷입히기 게임을 합쳐야 했지만 합치지 못했습니다.
 
-데모 영상 유투브 링크
+데모 영상 유투브 링크!
 https://www.youtube.com/watch?v=LqZHLqER6Io
