@@ -36,3 +36,4 @@ rpi-rgb-led-matrix/bindings/python/       이 경로에서 아래 3,4,5번 명�
 
 데모 영상 유투브 링크!
 https://www.youtube.com/watch?v=LqZHLqER6Io
+osscap2020에 오픈소스 프로젝트 최종 결과물(발표자료) pdf 파일로 올렸습니다.
